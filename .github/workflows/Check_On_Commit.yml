@@ -1,4 +1,4 @@
-name: Generate NAMESPACE file
+name: Routine Push Check
 run-name: ${{ github.actor }} is Runing Check and Generating NAMESPACE file
 on:
   push
@@ -15,9 +15,9 @@ jobs:
         run: |
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           echo "$current_wd"
-          bash $current_wd/.github/workflows/Run_devtools_check.sh "$current_wd"
+          bash $current_wd/.github/workflows/Install_and_run.sh "$current_wd"
           
-      - name: Upload NAMESPACE file
+      - name: Undo Push
         if: ${{ steps.Build_check.conclusion == 'failure' }}
         run: |
           cat $(pwd)/NAMESPACE

@@ -20,7 +20,7 @@ jobs:
         run: |
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           echo "$current_wd"
-          bash $current_wd/.github/workflows/Run_devtools_check.sh "$current_wd"
+          bash $current_wd/.github/workflows/Install_and_run.sh "$current_wd"
           
       - name: Upload NAMESPACE file
         if: ${{ steps.Build_check.conclusion != 'failure' }}
