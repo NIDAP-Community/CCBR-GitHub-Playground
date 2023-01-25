@@ -10,7 +10,7 @@ jobs:
   Generating-NAMESPACE-file:
     if: github.event.pull_request.opened == true
     runs-on: ubuntu-latest
-    container: r-base:4.1.3
+    container: ruihe864/ccbr-github-playground:latest
     steps:
       - run: echo "Running test in Official R-base docker container"
       - uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
           bash $current_wd/.github/workflows/Install_and_run.sh "$current_wd"
           
       - name: Upload NAMESPACE file
-        if: ${{ failure() }}
+        if: ${{ steps.Build_check.conclusion != 'failure' }}
         run: |
           cat $(pwd)/NAMESPACE
           cd $current_wd

@@ -2,13 +2,14 @@
 
 cd $1
 
+current_dir="$1"
 # Check if DESCRIPTION file exist
 
 if [ -f DESCRIPTION ]; then
     echo "DESCRIPTION exist."
     
     Rscript -e 'if(! require("devtools")){install.packages("devtools")};'
-    Rscript -e 'library(devtools);sink(file="test.log");load_all();test();sink()'  
+    Rscript -e 'library(devtools);sink(file="'${current_dir}'/test.log");load_all();test();sink()'  
     
     echo $(ls)
     
