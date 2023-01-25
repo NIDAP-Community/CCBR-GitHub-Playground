@@ -19,8 +19,8 @@ if [ -f DESCRIPTION ]; then
       exit 2
     else
       echo "Passed Check!"
+    fi
     
-
 else 
     echo "DESCRIPTION file does not exist."
     exit 1

@@ -23,7 +23,7 @@ jobs:
           bash $current_wd/.github/workflows/Install_and_run.sh "$current_wd"
           
       - name: Upload NAMESPACE file
-        if: ${{ steps.Build_check.conclusion != 'failure' }}
+        if: ${{ failure() }}
         run: |
           cat $(pwd)/NAMESPACE
           cd $current_wd
