@@ -1,0 +1,10 @@
+Package: simpleadder
+Title: A Simple Adder Toy
+Version: 0.0.0.1
+Authors@R: 
+    person("Rui", "He", , "rui.he@nih.gov", role = c("aut", "cre"))
+Description: A simple adder to combine two variables or add them numerically depending on type.
+License: GPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
