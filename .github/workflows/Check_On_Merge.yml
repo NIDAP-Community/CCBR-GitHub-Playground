@@ -24,8 +24,9 @@ jobs:
       - name: Upload NAMESPACE file
         if: ${{ success() }}
         run: |
-          cat $(pwd)/NAMESPACE
+          export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           cd $current_wd
+          cat $(pwd)/NAMESPACE
           
           export MY_GIT_TOKEN=${{secrets.GIT_TOKEN}}
           export MY_GIT_USERNAME=${{secrets.GIT_USERNAME}}
