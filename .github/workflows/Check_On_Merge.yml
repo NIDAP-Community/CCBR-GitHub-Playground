@@ -42,8 +42,5 @@ jobs:
           
           git config --global --add safe.directory "$current_wd"
 
-          git checkout -b main
           git add ./NAMESPACE ./man/* 
           git commit --amend -m "Upload generated NAMESPACE and /man"
-          git branch
-          git push -f origin main
