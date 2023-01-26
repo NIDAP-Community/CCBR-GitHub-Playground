@@ -22,7 +22,7 @@ jobs:
           bash $current_wd/.github/workflows/Check_On_Merge.sh "$current_wd"
           
       - name: Upload NAMESPACE file
-        if: if: ${{ success() }}
+        if: ${{ success() }}
         run: |
           cat $(pwd)/NAMESPACE
           cd $current_wd
