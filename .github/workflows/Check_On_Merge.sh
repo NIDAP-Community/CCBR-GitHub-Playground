@@ -9,14 +9,14 @@ if [ -f DESCRIPTION ]; then
     echo "DESCRIPTION exist."
     
     Rscript -e 'if(! require("devtools")){install.packages("devtools")};'
-    Rscript -e 'library(devtools);sink(file="'${current_dir}'/test.log");load_all();test();sink()'  
+    Rscript -e 'library(devtools);sink(file="'${current_dir}'/test.log");check();sink()'  
     
     cat test.log
     
-    PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
+    ERROR_num=$(tail -n 1 test.log | cut -d' ' -f 1)
     
-    if [ "$PASS_num" != "1" ]; then
-      echo "Number of PASS in check is $PASS_num"
+    if [ "$ERROR_num" != "0" ]; then
+      echo "Number of ERROR in check is $ERROR_num"
       exit 2
     else
       echo "Passed Check!"

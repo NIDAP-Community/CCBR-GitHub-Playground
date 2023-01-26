@@ -6,7 +6,7 @@
 # * https://r-pkgs.org/tests.html
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
-library(devtools)
+library(testthat)
 library(simpleadder)
 
 test_check("simpleadder")

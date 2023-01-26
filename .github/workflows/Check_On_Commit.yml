@@ -27,7 +27,7 @@ jobs:
         run: |
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           echo "$current_wd"
-          bash $current_wd/.github/workflows/Install_and_run.sh "$current_wd"
+          bash $current_wd/.github/workflows/Check_on_Commit.sh "$current_wd"
           
       - name: Undo Push
         if: ${{ failure() }}
