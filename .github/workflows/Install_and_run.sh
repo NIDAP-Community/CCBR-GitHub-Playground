@@ -15,7 +15,7 @@ if [ -f DESCRIPTION ]; then
     
     FAIL_num=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 3)
     
-    if [ $FAIL_num -ne 0 ]; then
+    if [ "$FAIL_num" != "0" ]; then
       echo "Number of FAIL in chekc is $FAIL_num"
       exit 2
     else
