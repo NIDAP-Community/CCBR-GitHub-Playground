@@ -20,6 +20,7 @@ jobs:
       - name: Undo Push
         if: ${{ failure() }}
         run: |
+          export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           echo "$current_wd"
           cd $current_wd
           
