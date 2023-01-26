@@ -58,4 +58,4 @@ jobs:
           
           git commit --amend -m "Undo last push due to error in test()"
           
-          git push origin ${{ steps.extract_branch.outputs.branch }}
+          git push -f origin ${{ steps.extract_branch.outputs.branch }}
