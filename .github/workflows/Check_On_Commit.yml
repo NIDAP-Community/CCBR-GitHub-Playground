@@ -47,7 +47,7 @@ jobs:
           
           git config --global --add safe.directory "$current_wd"
           
-          branch_name=$(echo ${GITHUB_REPOSITORY#*/} | sed 's:.*/::')
+          branch_name=${{ steps.extract_branch.outputs.branch }}
           
           git branch $branch_name
           git reset --hard HEAD~1

@@ -15,10 +15,10 @@ if [ -f DESCRIPTION ]; then
     
     echo "====================================================================="
     
-    message_check=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 2)
+    message_check=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 1)
     echo "Message Check: $message_check"
     
-    if [ "message_check" = "FAIL" ]; then
+    if [ "$message_check" = "PASS" ]; then
       PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
       if [ "$PASS_num" != "1" ]; then
         echo "Number of PASS in test is $PASS_num"
