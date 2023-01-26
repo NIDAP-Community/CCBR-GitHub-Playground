@@ -42,8 +42,3 @@ jobs:
           git add ./NAMESPACE ./man/* 
           git commit --amend -m "Upload generated NAMESPACE and /man"
           git push -f origin main
-        
-      
-    
-          
-          
