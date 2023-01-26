@@ -1,5 +1,5 @@
 name: Preparing for Merging
-run-name: ${{ github.actor }} is preparing for merging ${{ github.ref_name }} to main
+run-name: ${{ github.actor }} is preparing for merging "${{ github.ref_name }}" to main
 on:
   pull_request:
     types:
