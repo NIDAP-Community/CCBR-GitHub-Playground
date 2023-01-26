@@ -13,6 +13,6 @@ test_that("Check simple adder", {
   }
  
   TRUE_count <- as.numeric(table(output_list==example_outputs)["TRUE"])
-  
+  warning("This is to supress the test encourage line")
   expect_equal(TRUE_count,8)
 })

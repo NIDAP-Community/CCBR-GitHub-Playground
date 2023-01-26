@@ -38,7 +38,7 @@ jobs:
           git config --global url."https://ssh:$MY_GIT_TOKEN@github.com/".insteadOf "ssh://git@github.com/"
           git config --global url."https://git:$MY_GIT_TOKEN@github.com/".insteadOf "git@github.com:"
           
-          git config --global --add safe.directory $current_wd
+          git config --global --add safe.directory "$current_wd"
           
           git add ./NAMESPACE
           git commit --amend -m "Upload generated NAMESPACE"

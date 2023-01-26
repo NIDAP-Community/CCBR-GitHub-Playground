@@ -13,10 +13,10 @@ if [ -f DESCRIPTION ]; then
     
     cat test.log
     
-    FAIL_num=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 3)
+    PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
     
-    if [ $FAIL_num -ne 0 ]; then
-      echo "Number of FAIL in chekc is $FAIL_num"
+    if [ "$PASS_num" != "1" ]; then
+      echo "Number of PASS in check is $PASS_num"
       exit 2
     else
       echo "Passed Check!"
