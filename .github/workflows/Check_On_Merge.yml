@@ -1,5 +1,5 @@
-name: Runing Check and Generating file for merging
-run-name: ${{ github.actor }} is Runing Check and Generating file for merging
+name: Preparing for Merging
+run-name: ${{ github.actor }} is preparing for merging ${GITHUB_REF#refs/heads/} to main
 on:
   pull_request:
     types:
