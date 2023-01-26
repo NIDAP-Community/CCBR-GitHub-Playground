@@ -56,6 +56,6 @@ jobs:
           
           git reset --hard HEAD~1
           
-          git commit --ammend -m "Undo last push due to error in test()"
+          git commit --amend -m "Undo last push due to error in test()"
           
           git push origin ${{ steps.extract_branch.outputs.branch }}
