@@ -28,9 +28,29 @@ jobs:
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           echo "$current_wd"
           bash $current_wd/.github/workflows/Check_on_Commit.sh "$current_wd"
+          echo ${GITHUB_REPOSITORY}
           
       - name: Undo Push
         if: ${{ failure() }}
-        uses: exions/undo-push@v1
-        with:
-          branch: ${{ steps.extract_branch.outputs.branch }}
+        run: |
+          export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
+          echo "$current_wd"
+          
+          export MY_GIT_TOKEN=${{secrets.GIT_TOKEN}}
+          export MY_GIT_USERNAME=${{secrets.GIT_USERNAME}}
+          export MY_GIT_EMAIL=${{secrets.GIT_EMAIL}}
+          
+          git config --global user.name $MY_GIT_USERNAME
+          git config --global user.email $MY_GIT_EMAIL
+          git config --global url."https://api:$MY_GIT_TOKEN@github.com/".insteadOf "https://github.com/"
+          git config --global url."https://ssh:$MY_GIT_TOKEN@github.com/".insteadOf "ssh://git@github.com/"
+          git config --global url."https://git:$MY_GIT_TOKEN@github.com/".insteadOf "git@github.com:"
+          
+          git config --global --add safe.directory "$current_wd"
+          
+          git 
+          
+          git branch ${GITHUB_REF}
+          git reset --hard HEAD~1
+          git commit --ammend -m "Undo last push due to error in test()"
+          git push origin ${GITHUB_REF}
