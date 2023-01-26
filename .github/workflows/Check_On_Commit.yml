@@ -20,7 +20,7 @@ jobs:
       - name: Undo Push
         if: ${{ failure() }}
         run: |
-          cat $(pwd)/NAMESPACE
+          
           cd $current_wd
           
           export MY_GIT_TOKEN=${{secrets.GIT_TOKEN}}
