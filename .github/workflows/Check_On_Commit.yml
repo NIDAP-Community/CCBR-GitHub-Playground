@@ -49,7 +49,7 @@ jobs:
           
           git branch ${GITHUB_REF}
           git reset --hard HEAD~1
-          git push --force
+          git push origin refs/heads/${GITHUB_REF}:refs/heads/${GITHUB_REF}
         
         
       
