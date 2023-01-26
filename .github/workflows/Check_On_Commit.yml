@@ -47,7 +47,9 @@ jobs:
           
           git config --global --add safe.directory "$current_wd"
           
-          git branch ${GITHUB_REF}
+          branch_name=$(echo ${GITHUB_REPOSITORY#*/} | sed 's:.*/::')
+          
+          git branch $branch_name
           git reset --hard HEAD~1
           git commit --amend -m "Undo last push due to error in test()"
-          git push origin ${GITHUB_REF}
+          git push origin $branch_name

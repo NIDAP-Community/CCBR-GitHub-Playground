@@ -13,7 +13,10 @@ if [ -f DESCRIPTION ]; then
     
     cat test.log
     
+    echo "====================================================================="
+    
     message_check=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 2)
+    echo "Message Check: $message_check"
     
     if [ "message_check" = "FAIL" ]; then
       PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
