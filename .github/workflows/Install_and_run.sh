@@ -11,7 +11,7 @@ if [ -f DESCRIPTION ]; then
     Rscript -e 'if(! require("devtools")){install.packages("devtools")};'
     Rscript -e 'library(devtools);sink(file="'${current_dir}'/test.log");load_all();test();sink()'  
     
-    echo $(ls)
+    cat test.log
     
     FAIL_num=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 3)
     
