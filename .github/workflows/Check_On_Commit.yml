@@ -48,9 +48,14 @@ jobs:
           
           git config --global --add safe.directory "$current_wd"
           
-          git 
+          git clone https://github.com/${GITHUB_REPOSITORY}.git
           
-          git branch ${GITHUB_REF}
+          cd ${GITHUB_REPOSITORY#*/}
+          
+          git checkout ${{ steps.extract_branch.outputs.branch }}
+          
           git reset --hard HEAD~1
+          
           git commit --ammend -m "Undo last push due to error in test()"
-          git push origin ${GITHUB_REF}
+          
+          git push origin ${{ steps.extract_branch.outputs.branch }}
