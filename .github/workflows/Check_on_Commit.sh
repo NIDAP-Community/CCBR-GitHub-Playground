@@ -13,13 +13,24 @@ if [ -f DESCRIPTION ]; then
     
     cat test.log
     
-    PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
+    message_check=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 2)
     
-    if [ "$PASS_num" != "1" ]; then
-      echo "Number of PASS in test is $PASS_num"
-      exit 2
+    if [ "message_check" = "FAIL" ]; then
+      PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
+      if [ "$PASS_num" != "1" ]; then
+        echo "Number of PASS in test is $PASS_num"
+        exit 2
+      else
+        echo "Passed Check!"
+      fi
     else
-      echo "Passed Check!"
+      PASS_num=$(tail -n2 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
+      if [ "$PASS_num" != "1" ]; then
+        echo "Number of PASS in test is $PASS_num"
+        exit 2
+      else
+        echo "Passed Check!"
+      fi
     fi
     
 else 
