@@ -27,6 +27,7 @@ jobs:
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           cd $current_wd
           cat $(pwd)/NAMESPACE
+          echo " Demo Branch "
           
           export MY_GIT_TOKEN=${{secrets.GIT_TOKEN}}
           export MY_GIT_USERNAME=${{secrets.GIT_USERNAME}}
@@ -39,8 +40,7 @@ jobs:
           git config --global url."https://git:$MY_GIT_TOKEN@github.com/".insteadOf "git@github.com:"
           
           git config --global --add safe.directory "$current_wd"
-          
+          git checkout -b main
           git add ./NAMESPACE ./man/* 
           git commit --amend -m "Upload generated NAMESPACE and /man"
-          git branch
           git push -f origin main
