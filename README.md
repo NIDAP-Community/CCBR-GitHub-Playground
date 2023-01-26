@@ -7,3 +7,4 @@ This training repo is for CCBR internal devs to familiarize with GitHub operatio
   3) Test trial 3
   4) Test trial 4
   5) Demo update, try to merge demo to dev
+  6) Demo update, try to merge demo to dev, try 2
