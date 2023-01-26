@@ -13,7 +13,7 @@ if [ -f DESCRIPTION ]; then
     
     cat test.log
     
-    PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 2)
+    PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 4)
     
     if [ "$PASS_num" != "1" ]; then
       echo "Number of PASS in check is $PASS_num"
