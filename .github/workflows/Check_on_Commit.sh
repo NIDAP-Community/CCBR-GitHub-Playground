@@ -26,8 +26,9 @@ if [ -f DESCRIPTION ]; then
       else
         echo "Passed Check!"
       fi
+      
     else
-      PASS_num=$(tail -n2 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
+      PASS_num=$(tail -n2 test.log | head -n1 | cut -d'|' -f 4 | cut -d' ' -f 3)
       if [ "$PASS_num" != "1" ]; then
         echo "Number of PASS in test is $PASS_num"
         exit 2
