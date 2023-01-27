@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ruihe864/ccbr-github-playground:latest
     steps:
-      - run: echo "Running test in Official R-base docker container"
+      - run: echo "Running test in Official R-base docker container with devtools"
       - uses: actions/checkout@v3
         with:
           token: ${{secrets.GIT_TOKEN}}
