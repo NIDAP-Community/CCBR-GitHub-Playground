@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - '*'
+      - '!dev'
+      - '!main'
 jobs:
   Routine_Check_for_Commit:
     runs-on: ubuntu-latest
