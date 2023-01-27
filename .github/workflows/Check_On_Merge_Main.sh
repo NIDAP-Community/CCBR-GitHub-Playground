@@ -15,23 +15,23 @@ if [ -f DESCRIPTION ]; then
     
     echo "====================================================================="
     
-    message_check=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 2)
+    message_check=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 2)
     echo "Message Check: $message_check"
     
-    if [ "$message_check" = "PASS" ]; then
-      PASS_num=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 3)
-      if [ "$PASS_num" != "1" ]; then
-        echo "Number of PASS in test is $PASS_num"
+    if [ "$message_check" = "errors" ]; then
+      error_num=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 1)
+      if [ "$error_num" != "0" ]; then
+        echo "Number of errors in test is $error_num"
         exit 2
       else
         echo "Passed Check!"
       fi
       
     else
-      PASS_num=$(tail -n3 test.log | head -n1 | cut -d'|' -f 4 | cut -d' ' -f 3)
+      error_num=$(tail -n3 test.log | head -n1 | cut -d'|' -f 1 | cut -d' ' -f 1)
       
-      if [ "$PASS_num" != "1" ]; then
-        echo "Number of PASS in test is $PASS_num"
+      if [ "$error_num" != "0" ]; then
+        echo "Number of errors in test is $error_num"
         exit 2
       else
         echo "Passed Check!"
