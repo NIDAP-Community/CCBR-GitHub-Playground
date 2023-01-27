@@ -7,7 +7,7 @@ on:
     branches:
       - dev
 jobs:
-  Generating-NAMESPACE-file:
+  Unit_tests:
     runs-on: ubuntu-latest
     container: ruihe864/ccbr-github-playground:latest
     steps:

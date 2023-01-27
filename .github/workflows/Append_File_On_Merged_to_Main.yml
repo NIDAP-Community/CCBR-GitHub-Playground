@@ -7,7 +7,7 @@ on:
     branches:
       - main
 jobs:
-  Adding-NAMESPACE/man-files:
+  Adding_NAMESPACE_and_man_files:
     if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
     container: ruihe864/ccbr-github-playground:latest

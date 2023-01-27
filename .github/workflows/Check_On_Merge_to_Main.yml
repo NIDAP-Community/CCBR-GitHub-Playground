@@ -7,7 +7,7 @@ on:
     branches:
       - main 
 jobs:
-  Generating-NAMESPACE-file:
+  Integration_Test_and_Check:
     runs-on: ubuntu-latest
     container: ruihe864/ccbr-github-playground:latest
     steps:
