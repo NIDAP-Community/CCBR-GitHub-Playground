@@ -9,3 +9,5 @@ This training repo is for CCBR internal devs to familiarize with GitHub operatio
   5) Demo update, try to merge demo to dev
   6) Demo update, try to merge demo to dev, try 3
   7) Demo update, try to merge demo to dev, try 4
+  8) Demo update, try to merge demo to dev, try 5
+  
