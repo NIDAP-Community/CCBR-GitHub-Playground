@@ -16,7 +16,7 @@ test_that("Check simple adder", {
   
   print(output_list)
   
-  # test note
+  # test note1
   warning("This is to supress the test encourage line")
   expect_equal(TRUE_count,8)
 })
