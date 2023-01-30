@@ -29,7 +29,7 @@ jobs:
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           cd $current_wd
           cat $(pwd)/NAMESPACE
-          dt=`date '+%m_%d_%Y_%H_%M_%S'
+          dt=`date '+%m_%d_%Y_%H_%M_%S'`
           
           export MY_GIT_TOKEN=${{secrets.GIT_TOKEN}}
           export MY_GIT_USERNAME=${{secrets.GIT_USERNAME}}
