@@ -1,4 +1,4 @@
-name: Preparing for Merging
+name: Preparing for Merging to Dev
 run-name: ${{ github.actor }} is preparing for merging "${{ github.ref_name }}" to Dev
 on:
   pull_request:
