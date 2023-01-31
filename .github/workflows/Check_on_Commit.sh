@@ -5,9 +5,7 @@ cd $1
 current_dir="$1"
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
 echo "Checking latestest push to $current_branch"
-# Check if DESCRIPTION file exist
 
-#https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
 
 if [ -f DESCRIPTION ]; then
     echo "DESCRIPTION exist."
@@ -16,35 +14,35 @@ if [ -f DESCRIPTION ]; then
     R_script_test=($(git log -n 1 --raw --name-status --pretty=format: $current_branch | \
                     grep -E 'tests/testthat' | sed 's:.*/::' ))
                     
-    echo "Test script changed: $R_script_test"
+    echo -e "Test script changed: \n${R_script_test[*]}\n"
     
     R_script_func=($(git log -n 1 --raw --name-status --pretty=format: $current_branch | \
                     grep -E 'R/' | sed 's:.*/::' ))
                     
-    echo "Function script changed: $R_script_func"
+    echo -e "Function script changed: \n${R_script_func[*]}\n"
     
     for R_script in ${R_script_func[@]}
     do
       test_file=$(ls tests/testthat | grep -E "$R_script")
-      echo $test_file
       if [[ ! " ${R_script_test[*]} " =~ " ${test_file} " ]]; then
         R_script_test+="$test_file"
       fi
     done
     
-    
+    echo -e "Tests to run as: \n${R_script_test[*]}\n"
     
     for test_to_run in ${R_script_test[@]}
     do 
       
-      test_call='test_file("'"$current_dir"'/tests/'"$test_to_run"'");'
+      test_call='test_file("'"$current_dir"'/tests/testthat/'"$test_to_run"'");'
       
-      echo "Running $test_call"
+      echo "====================================================================="
+      echo -e "Running $test_call"
       
       Rscript -e 'if(! require("devtools")){install.packages("devtools")};library(devtools);sink(file="'"${current_dir}"'/test.log");load_all();'"$test_call"'sink()'  
       
       cat test.log
-      
+      echo "====================================================================="
       echo "====================================================================="
       
       message_check=$(tail -n 1 test.log | cut -d'|' -f 4 | cut -d' ' -f 2)
