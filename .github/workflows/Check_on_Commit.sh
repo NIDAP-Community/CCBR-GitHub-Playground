@@ -33,7 +33,10 @@ if [ -f DESCRIPTION ]; then
     
     for test_to_run in ${R_script_test[@]}
     do 
+      
       test_call='test_file("'"$current_dir"'/tests/'"$test_to_run"'");'
+      
+      echo "Running $test_call"
       
       Rscript -e 'library(devtools);sink(file="'"${current_dir}"'/test.log");load_all();'"$test_call"'sink()'  
       
