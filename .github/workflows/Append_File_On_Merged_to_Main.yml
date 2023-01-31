@@ -46,6 +46,6 @@ jobs:
 
           git add ./NAMESPACE ./man/* 
           
-          git commit --amend -m "Adding auto-generated files"
+          git commit -a -m "Adding auto-generated files"
           
           git push -f origin main
