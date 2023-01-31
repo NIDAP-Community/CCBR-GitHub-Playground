@@ -3,7 +3,7 @@
 cd $1
 
 current_dir="$1"
-current_branch=$(git rev-parse --abbrev-ref HEAD)
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
 # Check if DESCRIPTION file exist
 
 #https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
