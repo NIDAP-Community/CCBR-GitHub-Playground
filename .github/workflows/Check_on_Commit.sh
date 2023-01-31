@@ -4,6 +4,7 @@ cd $1
 
 current_dir="$1"
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
+echo "Checking latestest push to $current_branch"
 # Check if DESCRIPTION file exist
 
 #https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
@@ -14,9 +15,13 @@ if [ -f DESCRIPTION ]; then
     
     R_script_test=($(git log -n 1 --raw --name-status --pretty=format: $current_branch | \
                     grep -E 'tests/testthat' | sed 's:.*/::' ))
+                    
+    echo "Test script changed: $R_script_test"
     
     R_script_func=($(git log -n 1 --raw --name-status --pretty=format: $current_branch | \
                     grep -E 'R/' | sed 's:.*/::' ))
+                    
+    echo "Function script changed: $R_script_func"
     
     for R_script in ${R_script_func[@]}
     do
@@ -29,8 +34,6 @@ if [ -f DESCRIPTION ]; then
     
     
     
-    Rscript -e 'if(! require("devtools")){install.packages("devtools")};'
-    
     for test_to_run in ${R_script_test[@]}
     do 
       
@@ -38,7 +41,7 @@ if [ -f DESCRIPTION ]; then
       
       echo "Running $test_call"
       
-      Rscript -e 'library(devtools);sink(file="'"${current_dir}"'/test.log");load_all();'"$test_call"'sink()'  
+      Rscript -e 'if(! require("devtools")){install.packages("devtools")};library(devtools);sink(file="'"${current_dir}"'/test.log");load_all();'"$test_call"'sink()'  
       
       cat test.log
       

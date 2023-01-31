@@ -8,7 +8,7 @@
 
 Simple_adder <- function (item_1, item_2){
   
-  #Test2
+  #Test3
   
   turn_numeric <- function (input){
     if (suppressWarnings(all(!is.na(as.numeric(as.character(input)))))) {
