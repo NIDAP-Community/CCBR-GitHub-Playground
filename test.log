@@ -1,0 +1,10 @@
+
+══ Testing test-Simple_adder.R ══════════════════════════════════════════════════════════════════════════════════════
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ][1] "HelloWorld" "WorldHello" "3"          "7"          "Hello1"    
+[6] "2World"     "World3"     "4Hello"    
+[ FAIL 0 | WARN 1 | SKIP 0 | PASS 0 ][ FAIL 0 | WARN 1 | SKIP 0 | PASS 1 ]
+
+── Warning ('test-Simple_adder.R:20'): Check simple adder ──────────────────────
+This is to supress the test encourage line
+
+[ FAIL 0 | WARN 1 | SKIP 0 | PASS 1 ]

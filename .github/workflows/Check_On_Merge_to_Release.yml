@@ -1,11 +1,11 @@
-name: Preparing for Merging to Dev
+name: Preparing for Merging to Release
 run-name: ${{ github.actor }} is preparing for merging "${{ github.ref_name }}" to Dev
 on:
   pull_request:
     types:
       - opened
     branches:
-      - dev
+      - release
 jobs:
   Unit_tests:
     runs-on: ubuntu-latest
