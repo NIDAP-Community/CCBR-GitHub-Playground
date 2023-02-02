@@ -53,8 +53,8 @@ jobs:
           echo "performing check now"
           nothing_2_commit=$(grep -Po "nothing to commit" commit_log.log)
           
-          echo "performing check now; $nothing_2_commit"
+          echo "Performing check now; $nothing_2_commit"
           
-          if [[ "$nothing_2_commit" != "nothing to commit" ]]; then
+          if [[ -z "$nothing_2_commit"]]; then
             git push -f origin main
           fi
