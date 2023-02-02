@@ -46,6 +46,12 @@ jobs:
 
           git add ./NAMESPACE ./man/* 
           
-          git commit -a -m "Adding auto-generated files"
+          git commit -a -m "Adding auto-generated files" 2>&1 | tee commit_log.log
           
-          git push -f origin main
+          commit_mes=$(tail -n 1 commit_log.log)
+          
+          if [ "$commit_mes" = "nothing to commit, working tree clean" ]; then
+            echo "NAMESPACE and man/ not changed, abort push"
+          else
+            git push -f origin main
+          fi
