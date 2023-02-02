@@ -16,7 +16,7 @@ jobs:
         with:
           token: ${{secrets.GIT_TOKEN}}
           
-      - name: Upload NAMESPACE file
+      - name: Generating files with Check
         if: ${{ success() }}
         run: |
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
@@ -55,8 +55,6 @@ jobs:
           
           echo "performing check now; $nothing_2_commit"
           
-          if [ "$nothing_2_commit" = "nothing to commit" ]; then
-            echo "NAMESPACE and man/ not changed, abort push"
-          else
+          if [[ "$nothing_2_commit" != "nothing to commit" ]]; then
             git push -f origin main
           fi
