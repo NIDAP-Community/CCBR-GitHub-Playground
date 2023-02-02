@@ -56,5 +56,6 @@ jobs:
           echo "Performing check now; $nothing_2_commit"
           
           if [[ -z "$nothing_2_commit"]]; then
+            echo "Updating main now"
             git push -f origin main
           fi
