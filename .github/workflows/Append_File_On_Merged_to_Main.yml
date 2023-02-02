@@ -54,7 +54,7 @@ jobs:
           echo "performing check now"
           export nothing_for_commit="$(grep -Po "nothing to commit" commit_log.log)"
           
-          if [[ -z "$nothing_for_commit" ]]; then
+          if [ -z "$nothing_for_commit" ]; then
             echo "Commit check failed: $nothing_for_commit" 
           else
             git push -f origin main
