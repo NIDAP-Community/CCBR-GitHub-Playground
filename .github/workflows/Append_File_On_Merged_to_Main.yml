@@ -55,12 +55,12 @@ jobs:
           nothing_2_commit=$(grep -Po "nothing to commit" commit_log.log)
           
           echo "::set-output name=commit_check::$(
-                echo "$nothing_2_commit"
+                echo "commit_check:$nothing_2_commit"
                 )"
           
           echo "Check set as variable: ${{ steps.prepare-push.outputs.commit_check }}"
           
       - name: Update main if neccessary
-        if: ${{ steps.prepare-push.outputs.commit_check }} != "nothing to commit"
+        if: ${{ steps.prepare-push.outputs.commit_check }} == "commit_check:"
         run: |
           git push -f origin main
