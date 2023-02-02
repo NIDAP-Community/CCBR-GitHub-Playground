@@ -17,27 +17,30 @@ if [ -f DESCRIPTION ]; then
     
     message_check=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 2)
     echo "Message Check: $message_check"
-    
-    if [ "$message_check" = "errors" ]; then
-      error_num=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 1)
-      if [ "$error_num" != "0" ]; then
-        echo "Number of errors in test is $error_num"
-        exit 2
-      else
-        echo "Passed Check!"
-      fi
-      
+    if [ "$message_check" = "FAIL" ]; then
+      echo "Failed integration test, please check the log."
+      exit 2
     else
-      error_num=$(tail -n3 test.log | head -n1 | cut -d'|' -f 1 | cut -d' ' -f 1)
-      
-      if [ "$error_num" != "0" ]; then
-        echo "Number of errors in test is $error_num"
-        exit 2
+      if [ "$message_check" = "errors" ]; then
+        error_num=$(tail -n 1 test.log | cut -d'|' -f 1 | cut -d' ' -f 1)
+        if [ "$error_num" != "0" ]; then
+          echo "Number of errors in test is $error_num"
+          exit 2
+        else
+          echo "Passed Check!"
+        fi
+        
       else
-        echo "Passed Check!"
+        error_num=$(tail -n3 test.log | head -n1 | cut -d'|' -f 1 | cut -d' ' -f 1)
+        
+        if [ "$error_num" != "0" ]; then
+          echo "Number of errors in test is $error_num"
+          exit 2
+        else
+          echo "Passed Check!"
+        fi
       fi
     fi
-    
 else 
     echo "DESCRIPTION file does not exist."
     exit 1
