@@ -52,10 +52,10 @@ jobs:
           cat commit_log.log
           
           echo "performing check now"
-          nothing_2_commit=$(grep -Po "nothing to commit" commit_log.log)
+          export nothing_for_commit="$(grep -Po "nothing to commit" commit_log.log)"
           
           echo "::set-output name=commit_check::$(
-                echo "commit_check:$nothing_2_commit"
+                echo "commit_check:$nothing_for_commit"
                 )"
           
           echo "Check set as variable: ${{ steps.prepare-push.outputs.commit_check }}"
