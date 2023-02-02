@@ -50,7 +50,10 @@ jobs:
           
           cat commit_log.log
           
+          echo "performing check now"
           nothing_2_commit=$(grep -Po "nothing to commit" commit_log.log)
+          
+          echo "performing check now; $nothing_2_commit"
           
           if [ "$nothing_2_commit" = "nothing to commit" ]; then
             echo "NAMESPACE and man/ not changed, abort push"
