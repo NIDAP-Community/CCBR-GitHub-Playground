@@ -58,7 +58,7 @@ jobs:
                 echo "$nothing_2_commit"
                 )"
           
-          
+          echo "Check set as variable: ${{ steps.prepare-push.outputs.commit_check }}"
           
       - name: Update main if neccessary
         if: ${{ steps.prepare-push.outputs.commit_check }} != "nothing to commit"
