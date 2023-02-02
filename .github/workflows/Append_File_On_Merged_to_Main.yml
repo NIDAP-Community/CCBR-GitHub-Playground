@@ -48,9 +48,9 @@ jobs:
           
           echo $(git commit -a -m "Adding auto-generated files") > commit_log.log
           
-          nothing_2_commit=$(grep -Po "nothing to commit" test_1_log.log)
-          
           cat commit_log.log
+          
+          nothing_2_commit=$(grep -Po "nothing to commit" commit_log.log)
           
           if [ "$nothing_2_commit" = "nothing to commit" ]; then
             echo "NAMESPACE and man/ not changed, abort push"
