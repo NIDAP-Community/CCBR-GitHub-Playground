@@ -54,13 +54,8 @@ jobs:
           echo "performing check now"
           export nothing_for_commit="$(grep -Po "nothing to commit" commit_log.log)"
           
-          echo "::set-output name=commit_check::$(
-                echo "commit_check:$nothing_for_commit"
-                )"
-          
-          echo "Check set as variable: ${{ steps.prepare-push.outputs.commit_check }}"
-          
-      - name: Update main if neccessary
-        if: ${{ steps.prepare-push.outputs.commit_check }} == "commit_check:"
-        run: |
-          git push -f origin main
+          if [[ -z "$nothing_for_commit"]]; then
+            echo "Commit check failed: $nothing_for_commit" 
+          else
+            git push -f origin main
+          fi
