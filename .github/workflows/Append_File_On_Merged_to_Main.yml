@@ -51,7 +51,7 @@ jobs:
           
           cat commit_log.log
           
-          echo "performing check now"
+          echo "Performing check now"
           export nothing_for_commit="$(grep -Po "nothing to commit" commit_log.log)"
           
           if [ -z "$nothing_for_commit" ]; then
@@ -59,3 +59,5 @@ jobs:
           else
             git push -f origin main
           fi
+          
+          echo "Process completed."
