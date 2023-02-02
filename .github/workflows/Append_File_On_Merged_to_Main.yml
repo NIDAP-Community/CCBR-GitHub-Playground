@@ -16,7 +16,8 @@ jobs:
         with:
           token: ${{secrets.GIT_TOKEN}}
           
-      - name: Generating files with Check
+      - name: Generating files with Document
+        id: prepare-push 
         if: ${{ success() }}
         run: |
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
@@ -53,6 +54,13 @@ jobs:
           echo "performing check now"
           nothing_2_commit=$(grep -Po "nothing to commit" commit_log.log)
           
-          echo "Performing check now; $nothing_2_commit"
+          echo "::set-output name=commit_check::$(
+                echo "$nothing_2_commit"
+                )"
           
-          if [[ -z "$nothing_2_commit"]]; then git push -f origin main; fi
+          
+          
+      - name: Update main if neccessary
+        if: ${{ steps.prepare-push.outputs.commit_check }} != "nothing to commit"
+        run: |
+          git push -f origin main
