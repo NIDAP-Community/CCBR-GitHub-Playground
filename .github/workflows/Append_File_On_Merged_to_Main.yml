@@ -24,11 +24,9 @@ jobs:
           cd $current_wd
           
           export MY_GIT_TOKEN=${{secrets.GITHUB_TOKEN}}
-          export MY_GIT_USERNAME=${{secrets.GIT_USERNAME}}
-          export MY_GIT_EMAIL=${{secrets.GIT_EMAIL}}
+          export MY_GIT_USERNAME=${{ github.actor }}
           
           git config --global user.name $MY_GIT_USERNAME
-          git config --global user.email $MY_GIT_EMAIL
           git config --global url."https://api:$MY_GIT_TOKEN@github.com/".insteadOf "https://github.com/"
           git config --global url."https://ssh:$MY_GIT_TOKEN@github.com/".insteadOf "ssh://git@github.com/"
           git config --global url."https://git:$MY_GIT_TOKEN@github.com/".insteadOf "git@github.com:"
