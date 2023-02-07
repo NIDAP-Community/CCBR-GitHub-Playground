@@ -34,6 +34,10 @@ jobs:
           
           bash $current_wd/.github/workflows/Check_on_Commit.sh "$current_wd"
           
+          export MY_GIT_USERNAME=${{ github.actor }}
+          
+          echo "$MY_GIT_USERNAME"
+          
       - name: Undo Push
         if: ${{ failure() }}
         run: |
