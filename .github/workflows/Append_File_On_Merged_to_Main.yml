@@ -14,15 +14,16 @@ jobs:
       - run: echo "Running test in Official R-base docker container with devtools"
       - uses: actions/checkout@v3
         with:
-          token: ${{secrets.GIT_TOKEN}}
+          token: ${{secrets.GITHUB_TOKEN}}
           
-      - name: Upload NAMESPACE file
+      - name: Generating files with Document
+        id: prepare-push 
         if: ${{ success() }}
         run: |
           export current_wd="/__w/${GITHUB_REPOSITORY#*/}/${GITHUB_REPOSITORY#*/}"
           cd $current_wd
           
-          export MY_GIT_TOKEN=${{secrets.GIT_TOKEN}}
+          export MY_GIT_TOKEN=${{secrets.GITHUB_TOKEN}}
           export MY_GIT_USERNAME=${{secrets.GIT_USERNAME}}
           export MY_GIT_EMAIL=${{secrets.GIT_EMAIL}}
           
@@ -50,10 +51,13 @@ jobs:
           
           cat commit_log.log
           
-          nothing_2_commit=$(grep -Po "nothing to commit" commit_log.log)
+          echo "Performing check now"
+          export nothing_for_commit="$(grep -Po "nothing to commit" commit_log.log)"
           
-          if [ "$nothing_2_commit" = "nothing to commit" ]; then
-            echo "NAMESPACE and man/ not changed, abort push"
+          if [ -z "$nothing_for_commit" ]; then
+            echo "Commit check failed: $nothing_for_commit" 
           else
             git push -f origin main
           fi
+          
+          echo "Process completed."
