@@ -23,7 +23,7 @@ if [ -f DESCRIPTION ]; then
     
     for R_script in ${R_script_func[@]}
     do
-      test_file=$(ls tests/testthat | grep -E "$R_script")
+      test_file=$(ls tests/testthat | grep -iE "$R_script")
       if [[ ! " ${R_script_test[*]} " =~ " ${test_file} " ]]; then
         R_script_test+="$test_file"
       fi
