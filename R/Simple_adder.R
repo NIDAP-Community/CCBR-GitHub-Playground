@@ -21,7 +21,7 @@ Simple_adder <- function (item_1, item_2){
   if (class(turn_numeric(item_1)) != "numeric" || class(turn_numeric(item_2)) != "numeric"){
     return_item <- paste0(toString(item_1),toString(item_2))
   }else{
-    return_item <- turn_numeric(item_1) + turn_numeric(item_2)
+    return_item <- turn_numeric(item_1) + turn_numeric(item_2) + 1
   }
   
   return(return_item)
