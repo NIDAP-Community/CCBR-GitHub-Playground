@@ -7,7 +7,7 @@
 #' 
 
 Simple_adder <- function (item_1, item_2){
-  print("Customed Message George")
+  print("Customed Message")
   
   turn_numeric <- function (input){
     if (suppressWarnings(all(!is.na(as.numeric(as.character(input)))))) {
